@@ -1,0 +1,117 @@
+@import "tailwindcss" source("../");
+
+@theme inline {
+  --color-cream: #F5F3ED;
+  --color-charcoal: #1E2520;
+  --color-gold: #A9835A;
+  
+  --font-sans: var(--font-outfit), Arial, Helvetica, sans-serif;
+  --font-serif: var(--font-playfair), Georgia, serif;
+}
+
+:root {
+  --background: #F5F3ED;
+  --foreground: #1E2520;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  background-color: var(--background);
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
+body,
+main {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+body {
+  overscroll-behavior-x: none;
+}
+
+main,
+section,
+header,
+footer,
+div {
+  min-width: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+a {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 767px) {
+  .text-balance {
+    text-wrap: wrap;
+  }
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: #fff;
+}
+
+html[data-nav-at-top="true"] .site-nav[data-home="true"][data-menu-open="false"][data-menu-navigating="false"] {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html[data-nav-at-top="true"] .site-nav[data-home="true"][data-menu-open="false"][data-menu-navigating="false"] .site-nav-brand {
+  color: #fff !important;
+}
+
+html[data-nav-at-top="true"] .site-nav[data-home="true"][data-menu-open="false"][data-menu-navigating="false"] .site-nav-tone {
+  color: rgb(255 255 255 / 0.8) !important;
+}
+
+html[data-nav-at-top="true"] .site-nav[data-home="true"][data-menu-open="false"][data-menu-navigating="false"] .site-nav-divider {
+  background-color: rgb(255 255 255 / 0.2) !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .premium-track {
+    position: relative;
+    display: inline-block;
+  }
+
+  .premium-track::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.35rem;
+    width: 100%;
+    height: 1px;
+    background: var(--color-gold);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition:
+      transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 420ms ease;
+    pointer-events: none;
+  }
+
+  .premium-track:hover::after,
+  .premium-track:focus-visible::after,
+  .premium-track[data-active="true"]::after {
+    opacity: 0.78;
+    transform: scaleX(1);
+  }
+}
