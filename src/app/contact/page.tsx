@@ -50,10 +50,10 @@ export default function ContactPage() {
               Write to
             </p>
             <a
-              href="mailto:shareef@3ts-inc.com"
+              href="mailto:enquire@mawzun-inc.com"
               className="block break-all font-serif text-3xl leading-tight text-charcoal transition-colors hover:text-gold md:text-4xl"
             >
-              shareef@3ts-inc.com
+              enquire@mawzun-inc.com
             </a>
 
             <div className="my-10 h-px w-full bg-charcoal/10" />

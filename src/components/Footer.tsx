@@ -20,10 +20,10 @@ export default function Footer() {
             Request a confidential conversation.
           </h2>
           <a
-            href="mailto:shareef@3ts-inc.com"
+            href="mailto:enquire@mawzun-inc.com"
             className="premium-track text-gold/80 hover:text-gold transition-colors font-sans tracking-widest uppercase text-sm inline-block mt-4"
           >
-            shareef@3ts-inc.com
+            enquire@mawzun-inc.com
           </a>
         </div>
 

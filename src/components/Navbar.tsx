@@ -301,10 +301,10 @@ export default function Navbar() {
               className="absolute bottom-12 left-8 border-t border-charcoal/10 pt-8 w-[calc(100%-4rem)]"
             >
               <a
-                href="mailto:shareef@3ts-inc.com"
+                href="mailto:enquire@mawzun-inc.com"
                 className="text-gold text-sm tracking-[0.2em] uppercase font-medium"
               >
-                shareef@3ts-inc.com
+                enquire@mawzun-inc.com
               </a>
             </motion.div>
           </motion.div>

@@ -80,10 +80,10 @@ export default function TestimonialsPage() {
             If this work feels relevant, the right first step is a short, confidential conversation.
           </p>
           <a
-            href="mailto:shareef@3ts-inc.com"
+            href="mailto:enquire@mawzun-inc.com"
             className="premium-track text-sm font-semibold uppercase tracking-[0.15em] text-gold hover:text-cream"
           >
-            Write to shareef@3ts-inc.com
+            Write to enquire@mawzun-inc.com
           </a>
         </div>
       </section>
