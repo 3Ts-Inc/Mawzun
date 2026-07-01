@@ -87,18 +87,32 @@ export default function Navbar() {
     return () => window.cancelAnimationFrame(frame);
   }, [pathname]);
 
+  useEffect(() => {
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (!event.persisted) return;
+
+      setIsOpen(false);
+      setIsMenuNavigating(false);
+      document.body.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("overflow");
+    };
+
+    window.addEventListener("pageshow", handlePageShow);
+    return () => window.removeEventListener("pageshow", handlePageShow);
+  }, []);
+
   // Prevent scrolling when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
       document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
+      document.body.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("overflow");
     }
     return () => {
-      document.body.style.overflow = "unset";
-      document.documentElement.style.overflow = "unset";
+      document.body.style.removeProperty("overflow");
+      document.documentElement.style.removeProperty("overflow");
     };
   }, [isOpen]);
 
