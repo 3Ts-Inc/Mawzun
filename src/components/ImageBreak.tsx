@@ -28,7 +28,8 @@ export default function ImageBreak({
         src={src}
         alt={alt}
         fill
-        className={`object-cover object-${position}`}
+        className="object-cover"
+        style={{ objectPosition: position }}
         sizes="100vw"
       />
       {/* Subtle vignette overlay for editorial feel */}

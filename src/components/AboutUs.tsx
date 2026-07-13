@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useBrand } from "@/components/brand/BrandProvider";
+import type { SiteImage } from "@/lib/siteContent";
 
-export default function AboutUs() {
+export default function AboutUs({ image }: { image: SiteImage }) {
   const brand = useBrand();
 
   return (
@@ -92,10 +93,11 @@ export default function AboutUs() {
           className="w-full lg:w-1/2 relative h-[420px] md:h-[560px] lg:h-[640px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.14)] bg-charcoal overflow-hidden"
         >
           <Image
-            src="/shareef-khatib.webp"
-            alt="Shareef Samir Khatib"
+            src={image.src}
+            alt={image.alt}
             fill
             className="object-cover grayscale contrast-110 brightness-95"
+            style={{ objectPosition: image.position }}
             sizes="(min-width: 1024px) 50vw, 100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal/55 via-transparent to-transparent" />

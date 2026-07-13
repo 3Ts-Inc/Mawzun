@@ -33,4 +33,5 @@ See:
 
 - `HANDOFF.md` for hosting and ownership.
 - `CMS_PLAN.md` for the content-management implementation.
+- `CMS_SETUP.md` for the prepared Sanity connection and setup instructions.
 - `MEETING_RUNBOOK.md` for the June 18 handover call.

@@ -9,6 +9,7 @@ import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import ImageBreak from "@/components/ImageBreak";
 import { pageMetadata } from "@/lib/metadata";
+import { getMawzunContent } from "@/lib/siteContent";
 
 export const metadata = pageMetadata({
   title: "Mawzun Advisory — Senior Advisory for High-Stakes Alignment",
@@ -18,7 +19,9 @@ export const metadata = pageMetadata({
   image: "/og/home.webp",
 });
 
-export default function Home() {
+export default async function Home() {
+  const content = await getMawzunContent();
+
   return (
     <main className="flex min-h-screen flex-col bg-cream text-charcoal">
       <Navbar />
@@ -33,12 +36,12 @@ export default function Home() {
       <WhatWeDo />
       <WhyAndImpact />
       <SelectedEngagements />
-      <AboutUs />
+      <AboutUs image={content.home.shareefImage} />
       <ImageBreak
-        src="/home-kindness.webp"
-        alt="Quiet leadership conversation setting"
+        src={content.home.secondImage.src}
+        alt={content.home.secondImage.alt}
         height="h-[38vh] md:h-[52vh]"
-        position="center"
+        position={content.home.secondImage.position}
       />
       <Testimonials />
       <Footer />
