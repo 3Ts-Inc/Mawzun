@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { homeServices } from "@/lib/shareefContent";
 import { useBrand } from "@/components/brand/BrandProvider";
+import type { MawzunContent } from "@/lib/siteContent";
 
-export default function WhatWeDo() {
+export default function WhatWeDo({ content }: { content: MawzunContent["home"] }) {
   const brand = useBrand();
   const [active, setActive] = useState(0);
 
@@ -15,7 +15,7 @@ export default function WhatWeDo() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col items-start space-y-4 mb-8">
           <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-            What We Do
+            {content.servicesEyebrow}
           </span>
           <div className="w-12 h-[2px] bg-gold/60"></div>
         </div>
@@ -27,15 +27,14 @@ export default function WhatWeDo() {
           transition={{ duration: 0.8 }}
           className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-charcoal max-w-4xl mb-20"
         >
-          The work is organized around four engagements, each designed for a
-          different stage of the alignment problem.
+          {content.servicesHeading}
         </motion.h2>
         <p className="text-charcoal/55 text-sm tracking-wide mb-12 md:mb-16 hidden md:block">
-          Hover, focus, or select an engagement to open it.
+          {content.servicesHint}
         </p>
 
         <div className="hidden md:flex h-[30rem] w-full overflow-hidden border border-charcoal/10 bg-cream">
-          {homeServices.map((service, index) => {
+          {content.services.map((service, index) => {
             const isActive = active === index;
             return (
               <motion.div
@@ -112,7 +111,7 @@ export default function WhatWeDo() {
         </div>
 
         <div className="md:hidden border-y border-charcoal/10">
-          {homeServices.map((service, index) => {
+          {content.services.map((service, index) => {
             const isOpen = active === index;
             return (
               <div
@@ -178,7 +177,7 @@ export default function WhatWeDo() {
         >
           <Link href={brand.href("/approach")} className="group flex flex-col">
             <span className="text-gold text-sm font-semibold tracking-[0.15em] uppercase pb-2">
-              Read More About How We Work{" "}
+              {content.servicesCta}{" "}
               <span className="group-hover:ml-2 transition-all inline-block">
                 &rarr;
               </span>

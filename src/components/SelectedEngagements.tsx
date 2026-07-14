@@ -4,42 +4,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import Link from "next/link";
 import { useBrand } from "@/components/brand/BrandProvider";
-
-const cases = [
-  {
-    number: "01",
-    title: "Saudi Arabia —\nVision 2030 Assessment",
-    description:
-      "Supporting the World Bank GCC Prosperity team in the assessment of Saudi Arabia's Vision 2030 progress and next steps.\nOngoing.",
-    details: [
-      ["Context", "World Bank GCC Prosperity team"],
-      ["Mode", "Assessment facilitation and next-step design"],
-      ["Status", "Current engagement"],
-    ],
-  },
-  {
-    number: "02",
-    title: "Malaysia —\nNational Governance Reform",
-    description:
-      "Directed a $27M governance portfolio engaging Parliament, ministries, anti-corruption bodies, and civil society on reform priorities. $17M in cumulative impact to 80+ local actors within 18 months.",
-    details: [
-      ["Role", "Chief of Party"],
-      ["Table", "Parliament, ministries, anti-corruption bodies, civil society"],
-      ["Scale", "$27M portfolio; 80+ local grantees"],
-    ],
-  },
-  {
-    number: "03",
-    title: "World Bank —\nLeadership Development at Scale",
-    description:
-      "Delivered leadership training across 18 cohorts of World Bank Team Leaders and Supervisors. Cohorts recorded a 16% improvement in measured leadership scores.",
-    details: [
-      ["Audience", "Team Leaders and Supervisors"],
-      ["Scale", "18 cohorts"],
-      ["Signal", "16% improvement in leadership scores"],
-    ],
-  },
-];
+import type { MawzunContent } from "@/lib/siteContent";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -68,7 +33,7 @@ const mapDots = Array.from({ length: 400 }).flatMap((_, i) => {
     : [];
 });
 
-export default function SelectedEngagements() {
+export default function SelectedEngagements({ content }: { content: MawzunContent["home"] }) {
   const brand = useBrand();
 
   return (
@@ -96,7 +61,7 @@ export default function SelectedEngagements() {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col items-start space-y-4 mb-8">
           <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-            Selected Engagements
+            {content.engagementsEyebrow}
           </span>
           <div className="w-12 h-[2px] bg-gold/60"></div>
         </div>
@@ -108,8 +73,7 @@ export default function SelectedEngagements() {
           transition={{ duration: 0.8 }}
           className="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-charcoal mb-6"
         >
-          Most of this work <br className="hidden md:block" />
-          is confidential.
+          {content.engagementsHeading}
         </motion.h2>
 
         <motion.p
@@ -119,7 +83,7 @@ export default function SelectedEngagements() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-gold text-xl md:text-2xl font-serif italic mb-20"
         >
-          Selected public-safe cases below.
+          {content.engagementsIntroduction}
         </motion.p>
 
         <motion.div
@@ -129,7 +93,7 @@ export default function SelectedEngagements() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {cases.map((item, index) => (
+          {content.engagements.map((item, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
@@ -153,10 +117,10 @@ export default function SelectedEngagements() {
               </p>
               <div className="mt-8 border-t border-charcoal/10 pt-5 transition-all duration-500 md:translate-y-2 md:opacity-55 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                 <div className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-gold/80">
-                  Public-safe detail
+                  {content.engagementDetailLabel}
                 </div>
                 <dl className="space-y-3">
-                  {item.details.map(([label, value]) => (
+                  {item.details.map(({ label, value }) => (
                     <div
                       key={label}
                       className="grid grid-cols-[72px_1fr] gap-4 border-b border-charcoal/[0.06] pb-3 last:border-b-0 last:pb-0"
@@ -184,7 +148,7 @@ export default function SelectedEngagements() {
         >
           <Link href={brand.href("/impact")} className="group flex flex-col">
             <span className="text-gold text-sm font-semibold tracking-[0.15em] uppercase pb-2">
-              More engagements <span className="group-hover:ml-2 transition-all inline-block">&rarr;</span>
+              {content.engagementsCta} <span className="group-hover:ml-2 transition-all inline-block">&rarr;</span>
             </span>
             <div className="w-full h-px bg-gold/30 group-hover:bg-gold transition-colors"></div>
           </Link>

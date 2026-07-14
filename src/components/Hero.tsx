@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useBrand } from "@/components/brand/BrandProvider";
+import type { MawzunContent } from "@/lib/siteContent";
 
-export default function Hero() {
+export default function Hero({ content }: { content: MawzunContent["home"] }) {
   const brand = useBrand();
 
   return (
@@ -14,20 +15,22 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         {/* Mobile portrait image */}
         <Image
-          src="/3TsHeroBGmobile.png"
-          alt="Executive boardroom"
+          src={content.heroMobileImage.src}
+          alt={content.heroMobileImage.alt}
           fill
           priority
           className="object-cover md:hidden"
+          style={{ objectPosition: content.heroMobileImage.position }}
           sizes="100vw"
         />
         {/* Desktop wide image */}
         <Image
-          src="/3TsHeroBG.png"
-          alt="Executive boardroom"
+          src={content.heroDesktopImage.src}
+          alt={content.heroDesktopImage.alt}
           fill
           priority
           className="object-cover hidden md:block"
+          style={{ objectPosition: content.heroDesktopImage.position }}
           sizes="100vw"
         />
         {/* Dark overlay for text readability */}
@@ -44,16 +47,16 @@ export default function Hero() {
           className="w-full max-w-[calc(100vw-3rem)] md:max-w-3xl"
         >
           <h1 className="w-full max-w-[19rem] md:max-w-2xl font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.08] md:leading-[1.1] tracking-tight text-white mb-8 md:text-balance">
-            The strategy is not the problem. The room is.
+            {content.heroHeading}
           </h1>
 
           <p className="w-full max-w-[21rem] md:max-w-2xl text-white/76 text-base md:text-lg leading-relaxed mb-10 md:mb-12 text-pretty">
-            Transformations stall when the people who must implement a decision are not yet aligned around it, or aren’t even present. I work with senior sponsors in the MENA region to convene and hold the rooms where that alignment is built, and to ensure the decisions made there survive contact with reality.
+            {content.heroIntroduction}
           </p>
 
           <Link href={brand.href("/contact")} className="block w-full max-w-[20rem] sm:inline-block sm:w-auto sm:max-w-full">
             <button className="w-full sm:w-auto bg-white/10 backdrop-blur-sm border border-white/20 text-white px-5 md:px-8 py-4 text-xs md:text-sm tracking-[0.1em] md:tracking-widest uppercase font-medium hover:bg-white/20 transition-all transform hover:-translate-y-0.5 active:translate-y-0 whitespace-normal text-center leading-relaxed">
-              Request a Confidential Conversation &rarr;
+              {content.heroCta} &rarr;
             </button>
           </Link>
         </motion.div>

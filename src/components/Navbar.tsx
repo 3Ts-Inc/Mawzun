@@ -8,15 +8,7 @@ import type { Variants } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import { useBrand } from "@/components/brand/BrandProvider";
-
-const links = [
-  { href: "/about", label: "About" },
-  { href: "/approach", label: "Approach" },
-  { href: "/services", label: "Services" },
-  { href: "/impact", label: "Impact" },
-  { href: "/testimonials", label: "Testimonials" },
-  { href: "/contact", label: "Contact" },
-];
+import { useSiteContent } from "@/components/content/ContentProvider";
 
 const menuVariants: Variants = {
   closed: {
@@ -68,6 +60,7 @@ function isPastHeroTop() {
 
 export default function Navbar() {
   const brand = useBrand();
+  const { global } = useSiteContent();
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuNavigating, setIsMenuNavigating] = useState(false);
   const [shouldAnimateIntro] = useState(() => !hasPlayedNavIntro);
@@ -202,7 +195,7 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <nav className={`site-nav-tone hidden md:flex items-center space-x-8 text-sm font-medium tracking-widest uppercase ${navToneClass}`}>
-            {links.slice(0, 5).map((link) => {
+            {global.navigation.slice(0, -1).map((link) => {
               const isActive = pathname === brand.href(link.href);
 
               return (
@@ -232,7 +225,7 @@ export default function Navbar() {
                   : `hover:text-gold ${navToneClass}`
               }`}
             >
-              Contact
+              {global.navigation.at(-1)?.label}
             </Link>
           </div>
 
@@ -294,7 +287,7 @@ export default function Navbar() {
               animate="open"
               className="flex flex-col items-start space-y-8"
             >
-              {links.map((link) => (
+              {global.navigation.map((link) => (
                 <motion.div key={link.href} variants={linkVariants}>
                   <Link
                     href={brand.href(link.href)}
@@ -315,10 +308,10 @@ export default function Navbar() {
               className="absolute bottom-12 left-8 border-t border-charcoal/10 pt-8 w-[calc(100%-4rem)]"
             >
               <a
-                href="mailto:enquire@mawzun-inc.com"
+                href={`mailto:${global.email}`}
                 className="text-gold text-sm tracking-[0.2em] uppercase font-medium"
               >
-                enquire@mawzun-inc.com
+                {global.email}
               </a>
             </motion.div>
           </motion.div>

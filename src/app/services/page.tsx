@@ -14,7 +14,8 @@ export const metadata = pageMetadata({
 });
 
 export default async function ServicesPage() {
-  const { services } = await getMawzunContent();
+  const content = await getMawzunContent();
+  const { services } = content;
 
   return (
     <main className="flex min-h-screen flex-col bg-cream text-charcoal">
@@ -23,12 +24,12 @@ export default async function ServicesPage() {
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col items-start space-y-4 mb-8">
             <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-              Services
+              {services.eyebrow}
             </span>
             <div className="w-12 h-[2px] bg-gold/60"></div>
           </div>
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-charcoal mb-12">
-            Structured interventions for complex alignment problems.
+            {services.heading}
           </h1>
         </div>
       </section>
@@ -51,16 +52,13 @@ export default async function ServicesPage() {
 
           <div className="border-t border-charcoal/10 pt-8">
             <p className="text-gold text-xs font-semibold tracking-[0.2em] uppercase mb-5">
-              Designed, not improvised
+              {services.introEyebrow}
             </p>
             <p className="font-serif text-2xl md:text-3xl leading-snug text-charcoal mb-6">
-              Each engagement is built around the actual decision, room, or
-              transition in front of the client.
+              {services.introLead}
             </p>
             <p className="text-charcoal/70 text-lg leading-relaxed">
-              The work may begin as a diagnostic, become a sprint, or stay with
-              the sponsor through a longer transformation. The constant is
-              careful preparation, confidential judgment, and follow-through.
+              {services.introText}
             </p>
           </div>
         </div>
@@ -68,10 +66,10 @@ export default async function ServicesPage() {
         <div className="mx-auto mt-14 max-w-7xl border-y border-charcoal/10 py-5">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold">
-              How a conversation becomes movement
+              {services.processEyebrow}
             </p>
             <ol className="grid grid-cols-5 gap-px overflow-hidden border border-charcoal/10 bg-charcoal/10 text-center">
-              {["Listen", "Map", "Design", "Convene", "Follow through"].map(
+              {services.processSteps.map(
                 (step) => (
                   <li
                     key={step}
@@ -86,7 +84,7 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <WhatWeDo />
+      <WhatWeDo content={content.home} />
 
       <section className="w-full bg-[#111613] px-6 py-20 md:px-16 lg:px-24">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.72fr_1fr] lg:items-center">
@@ -102,25 +100,22 @@ export default async function ServicesPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#111613]/45 via-transparent to-transparent" />
             <div className="absolute inset-0 border border-cream/10 pointer-events-none" />
             <div className="absolute bottom-5 left-5 border-l border-gold/50 pl-4 text-[9px] font-medium uppercase tracking-[0.18em] text-cream/45">
-              Field note: facilitated working session
+              {services.imageCaption}
             </div>
           </div>
 
           <div className="max-w-2xl">
             <div className="mb-8 flex flex-col items-start space-y-4">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                In the room
+                {services.roomEyebrow}
               </span>
               <div className="h-[2px] w-12 bg-gold/60"></div>
             </div>
             <p className="mb-8 font-serif text-3xl leading-snug text-cream md:text-5xl">
-              These processes all create a structure. The product of each is clearer decisions and more durable alignment.
+              {services.roomLead}
             </p>
             <p className="text-base leading-relaxed text-cream/68 md:text-lg">
-              Shareef designs the intervention, prepares the stakeholders, and
-              then holds the conversation with enough structure for movement and
-              enough care for candor. That combination is what turns a meeting
-              into a consequential working session.
+              {services.roomText}
             </p>
           </div>
         </div>

@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { useBrand } from "@/components/brand/BrandProvider";
+import { useSiteContent } from "@/components/content/ContentProvider";
 
 export default function Footer() {
   const brand = useBrand();
+  const { global } = useSiteContent();
 
   return (
     <footer className="w-full bg-[#151a16] pt-16 pb-24 px-6 md:px-16 lg:px-24">
@@ -12,18 +14,18 @@ export default function Footer() {
         <div className="mb-12 md:mb-0">
           <div className="flex flex-col items-start space-y-4 mb-8">
             <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-              Contact
+              {global.footerEyebrow}
             </span>
             <div className="w-12 h-[2px] bg-gold/60"></div>
           </div>
           <h2 className="font-serif text-4xl md:text-5xl text-cream mb-4">
-            Request a confidential conversation.
+            {global.footerHeading}
           </h2>
           <a
-            href="mailto:enquire@mawzun-inc.com"
+            href={`mailto:${global.email}`}
             className="premium-track text-gold/80 hover:text-gold transition-colors font-sans tracking-widest uppercase text-sm inline-block mt-4"
           >
-            enquire@mawzun-inc.com
+            {global.email}
           </a>
         </div>
 

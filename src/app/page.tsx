@@ -25,25 +25,25 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col bg-cream text-charcoal">
       <Navbar />
-      <Hero />
-      <WhoWeWorkWith />
+      <Hero content={content.home} />
+      <WhoWeWorkWith content={content.home} />
       <ImageBreak
-        src="/home-convening.webp"
-        alt="Prepared executive convening room"
+        src={content.home.conveningImage.src}
+        alt={content.home.conveningImage.alt}
         height="h-[42vh] md:h-[58vh]"
-        position="center"
+        position={content.home.conveningImage.position}
       />
-      <WhatWeDo />
-      <WhyAndImpact />
-      <SelectedEngagements />
-      <AboutUs image={content.home.shareefImage} />
+      <WhatWeDo content={content.home} />
+      <WhyAndImpact content={content.home} />
+      <SelectedEngagements content={content.home} />
+      <AboutUs content={content.home} />
       <ImageBreak
         src={content.home.secondImage.src}
         alt={content.home.secondImage.alt}
         height="h-[38vh] md:h-[52vh]"
         position={content.home.secondImage.position}
       />
-      <Testimonials />
+      <Testimonials content={content.home} />
       <Footer />
     </main>
   );

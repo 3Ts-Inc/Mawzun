@@ -25,7 +25,7 @@ export default async function ContactPage() {
           <div>
             <div className="mb-8 flex flex-col items-start space-y-4">
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Contact
+                {contact.eyebrow}
               </span>
               <div className="h-[2px] w-12 bg-gold/60" />
             </div>
@@ -43,7 +43,7 @@ export default async function ContactPage() {
 
             <aside className="border border-charcoal/10 bg-[#f8f6f2] p-8 shadow-[0_24px_70px_-40px_rgba(0,0,0,0.22)] md:p-10">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              Write to
+              {contact.emailLabel}
             </p>
             <a
               href={`mailto:${contact.email}`}
@@ -79,7 +79,7 @@ export default async function ContactPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-charcoal/18 via-transparent to-charcoal/10" />
             <div className="absolute inset-0 border border-white/10" />
             <p className="absolute bottom-5 left-5 border-l border-gold/60 pl-4 text-[9px] font-medium uppercase tracking-[0.18em] text-cream/70">
-              Careful listening before consequential decisions
+              {contact.imageCaption}
             </p>
           </div>
         </div>

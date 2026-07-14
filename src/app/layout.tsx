@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Outfit, Playfair_Display } from "next/font/google";
 import { siteUrl } from "@/lib/metadata";
 import "./globals.css";
+import { ContentProvider } from "@/components/content/ContentProvider";
+import { getMawzunContent } from "@/lib/siteContent";
+import { BrandProvider } from "@/components/brand/BrandProvider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -46,11 +49,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const content = await getMawzunContent();
   return (
     <html
       lang="en"
@@ -65,7 +69,9 @@ export default function RootLayout({
         />
       </head>
       <body className="flex flex-col font-sans bg-cream text-charcoal selection:bg-gold selection:text-cream overflow-x-hidden w-full relative antialiased">
-        {children}
+        <BrandProvider value={{ name: content.global.name, shortName: content.global.shortName, arabicName: content.global.arabicName, legalName: content.global.legalName, tagline: content.global.tagline, logoSrc: content.global.logo.src, logoAlt: content.global.logo.alt }}>
+          <ContentProvider content={content}>{children}</ContentProvider>
+        </BrandProvider>
       </body>
     </html>
   );

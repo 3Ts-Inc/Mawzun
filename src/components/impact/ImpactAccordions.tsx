@@ -2,19 +2,19 @@
 
 import { CaretDown } from "@phosphor-icons/react";
 import { useState } from "react";
-import { impactSections } from "@/lib/shareefContent";
 import ImpactHeader from "@/components/impact/ImpactHeader";
+import type { MawzunContent } from "@/lib/siteContent";
 
-export default function ImpactAccordions() {
-  const [openSection, setOpenSection] = useState(impactSections[0]?.id ?? "");
+export default function ImpactAccordions({ content }: { content: MawzunContent["impact"] }) {
+  const [openSection, setOpenSection] = useState(content.sections[0]?.id ?? "");
 
   return (
     <>
-      <ImpactHeader variant="dark" />
+      <ImpactHeader content={content} variant="dark" />
 
       <section className="w-full px-6 py-24 md:px-16 lg:px-24">
         <div className="mx-auto max-w-6xl space-y-6">
-          {impactSections.map((section, sectionIndex) => {
+          {content.sections.map((section, sectionIndex) => {
             const isOpen = openSection === section.id;
             return (
               <article
@@ -55,7 +55,7 @@ export default function ImpactAccordions() {
                         isOpen ? "text-gold" : "text-charcoal/45"
                       }`}
                     >
-                      {isOpen ? "Close" : "Open"}
+                      {isOpen ? content.closeLabel : content.openLabel}
                     </span>
                     <span
                       className={`flex h-12 w-12 items-center justify-center border transition-all duration-300 ${

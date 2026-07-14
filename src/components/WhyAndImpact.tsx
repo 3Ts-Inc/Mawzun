@@ -2,15 +2,8 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import { homeImpactStats, homePatterns } from "@/lib/shareefContent";
 import StatNumber from "@/components/StatNumber";
-
-const statLabels = [
-  "Leadership scores",
-  "Gun violence · 3 months",
-  "In the room",
-  "Years at senior level",
-];
+import type { MawzunContent } from "@/lib/siteContent";
 
 const wallVariants: Variants = {
   hidden: { opacity: 0 },
@@ -22,7 +15,7 @@ const tileVariants: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-export default function WhyAndImpact() {
+export default function WhyAndImpact({ content }: { content: MawzunContent["home"] }) {
   return (
     <>
       <section className="w-full bg-[#f8f6f2] py-24 px-6 md:px-16 lg:px-24 border-t border-[#edebe4]">
@@ -30,7 +23,7 @@ export default function WhyAndImpact() {
           <div className="w-full lg:w-1/3 pr-0 lg:pr-12 mb-16 lg:mb-0">
             <div className="flex flex-col items-start space-y-4 mb-8">
               <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-                Patterns I help clients identify and navigate.
+                {content.patternsEyebrow}
               </span>
               <div className="w-12 h-[2px] bg-gold/60"></div>
             </div>
@@ -41,12 +34,12 @@ export default function WhyAndImpact() {
               transition={{ duration: 0.8 }}
               className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-charcoal"
             >
-              Patterns I help clients identify and navigate.
+              {content.patternsHeading}
             </motion.h2>
           </div>
 
           <div className="w-full lg:w-2/3 border-t border-[#edebe4]">
-            {homePatterns.map((pattern, index) => (
+            {content.patterns.map((pattern, index) => (
               <motion.div
                 key={pattern.id}
                 initial={{ opacity: 0, x: 20 }}
@@ -74,7 +67,7 @@ export default function WhyAndImpact() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-start space-y-4 mb-8">
             <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-              Selected Impact
+              {content.impactEyebrow}
             </span>
             <div className="w-12 h-[2px] bg-gold/60"></div>
           </div>
@@ -86,7 +79,7 @@ export default function WhyAndImpact() {
             transition={{ duration: 0.8 }}
             className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-cream max-w-3xl mb-16"
           >
-            Real progress you can actually measure.
+            {content.impactHeading}
           </motion.h2>
 
           <motion.div
@@ -96,7 +89,7 @@ export default function WhyAndImpact() {
             viewport={{ once: true, margin: "-80px" }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-cream/10 border border-cream/10"
           >
-            {homeImpactStats.map((impact, index) => (
+            {content.impactStats.map((impact, index) => (
               <motion.div
                 key={impact.text}
                 variants={tileVariants}
@@ -105,7 +98,7 @@ export default function WhyAndImpact() {
                 <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full border border-gold/0 transition-all duration-700 pointer-events-none group-hover:-right-10 group-hover:-top-10 group-hover:border-gold/15" />
 
                 <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold/80 mb-6">
-                  {statLabels[index]}
+                  {content.impactLabels[index]}
                 </div>
                 <div className="font-serif text-6xl lg:text-7xl text-cream tracking-tighter mb-5 transition-transform duration-500 group-hover:-translate-y-0.5">
                   <StatNumber value={impact.value} />

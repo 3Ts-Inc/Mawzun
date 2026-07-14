@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { homepageTestimonials } from "@/lib/shareefContent";
 import { useBrand } from "@/components/brand/BrandProvider";
+import type { MawzunContent } from "@/lib/siteContent";
 
-export default function Testimonials() {
+export default function Testimonials({ content }: { content: MawzunContent["home"] }) {
   const brand = useBrand();
 
   return (
@@ -19,17 +19,17 @@ export default function Testimonials() {
         {/* Header */}
         <div className="flex flex-col items-start space-y-4 mb-20">
           <span className="text-gold text-xs font-semibold tracking-[0.2em] uppercase">
-            What Clients Have Said
+            {content.testimonialsEyebrow}
           </span>
           <div className="w-12 h-[2px] bg-gold/60"></div>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight text-charcoal mt-6">
-            Real evidence from real leaders.
+            {content.testimonialsHeading}
           </h2>
         </div>
 
         {/* Vertical Stack instead of cramped grid */}
         <div className="space-y-20 mb-20">
-          {homepageTestimonials.map((t, i) => (
+          {content.testimonials.map((t, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
@@ -72,7 +72,7 @@ export default function Testimonials() {
         >
           <Link href={brand.href("/testimonials")} className="group flex flex-col">
             <span className="text-gold text-sm font-semibold tracking-[0.15em] uppercase pb-2">
-              Visit Testimonials Page <span className="group-hover:ml-2 transition-all inline-block">&rarr;</span>
+              {content.testimonialsCta} <span className="group-hover:ml-2 transition-all inline-block">&rarr;</span>
             </span>
             <div className="w-full h-px bg-gold/30 group-hover:bg-gold transition-colors"></div>
           </Link>

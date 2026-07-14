@@ -1,8 +1,10 @@
-import { impactIntro, impactQualifier } from "@/lib/shareefContent";
+import type { MawzunContent } from "@/lib/siteContent";
 
 export default function ImpactHeader({
+  content,
   variant = "light",
 }: {
+  content: MawzunContent["impact"];
   variant?: "light" | "dark";
 }) {
   const isDark = variant === "dark";
@@ -17,12 +19,12 @@ export default function ImpactHeader({
         <div>
           <div className="mb-8 flex flex-col items-start space-y-4">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-              Impact
+              {content.eyebrow}
             </span>
             <div className="h-[2px] w-12 bg-gold/60" />
           </div>
           <h1 className="font-serif text-5xl leading-tight tracking-tight md:text-7xl">
-            IMPACT
+            {content.heading}
           </h1>
         </div>
 
@@ -32,14 +34,14 @@ export default function ImpactHeader({
               isDark ? "text-cream/86" : "text-charcoal/82"
             }`}
           >
-            {impactIntro}
+            {content.introduction}
           </p>
           <p
             className={`text-lg leading-relaxed ${
               isDark ? "text-cream/66" : "text-charcoal/72"
             }`}
           >
-            {impactQualifier}
+            {content.qualifier}
           </p>
         </div>
       </div>
