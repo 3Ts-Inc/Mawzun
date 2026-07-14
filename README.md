@@ -28,10 +28,3 @@ site.
 
 Set `NEXT_PUBLIC_SITE_URL` after the final domain is selected so canonical and
 social metadata use the production address.
-
-See:
-
-- `HANDOFF.md` for hosting and ownership.
-- `CMS_PLAN.md` for the content-management implementation.
-- `CMS_SETUP.md` for the prepared Sanity connection and setup instructions.
-- `MEETING_RUNBOOK.md` for the June 18 handover call.
