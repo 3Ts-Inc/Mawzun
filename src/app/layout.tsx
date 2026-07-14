@@ -6,7 +6,7 @@ import { ContentProvider } from "@/components/content/ContentProvider";
 import { getMawzunContent } from "@/lib/siteContent";
 import { BrandProvider } from "@/components/brand/BrandProvider";
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
 
 const outfit = Outfit({
   subsets: ["latin"],
